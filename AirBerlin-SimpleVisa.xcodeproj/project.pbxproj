@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		75D1ABE0850F46875C36BC5D /* Pods_AirBerlin_SimpleVisa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E797335451D9ED81FB4CD459 /* Pods_AirBerlin_SimpleVisa.framework */; };
 		AB1EDE6D1DB6A31500307EA9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1EDE6C1DB6A31500307EA9 /* AppDelegate.swift */; };
-		AB1EDE6F1DB6A31500307EA9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1EDE6E1DB6A31500307EA9 /* ViewController.swift */; };
+		AB1EDE6F1DB6A31500307EA9 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB1EDE6E1DB6A31500307EA9 /* MainViewController.swift */; };
 		AB1EDE721DB6A31500307EA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB1EDE701DB6A31500307EA9 /* Main.storyboard */; };
 		AB1EDE771DB6A31500307EA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB1EDE761DB6A31500307EA9 /* Assets.xcassets */; };
 		AB1EDE7A1DB6A31500307EA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB1EDE781DB6A31500307EA9 /* LaunchScreen.storyboard */; };
@@ -19,7 +19,7 @@
 		02EE73B6F14DF0C6F13AFFCB /* Pods-AirBerlin-SimpleVisa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AirBerlin-SimpleVisa.release.xcconfig"; path = "Pods/Target Support Files/Pods-AirBerlin-SimpleVisa/Pods-AirBerlin-SimpleVisa.release.xcconfig"; sourceTree = "<group>"; };
 		AB1EDE691DB6A31500307EA9 /* AirBerlin-SimpleVisa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "AirBerlin-SimpleVisa.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB1EDE6C1DB6A31500307EA9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AB1EDE6E1DB6A31500307EA9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AB1EDE6E1DB6A31500307EA9 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		AB1EDE711DB6A31500307EA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AB1EDE761DB6A31500307EA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB1EDE791DB6A31500307EA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				AB1EDE6C1DB6A31500307EA9 /* AppDelegate.swift */,
-				AB1EDE6E1DB6A31500307EA9 /* ViewController.swift */,
+				AB1EDE6E1DB6A31500307EA9 /* MainViewController.swift */,
 				AB1EDE701DB6A31500307EA9 /* Main.storyboard */,
 				AB1EDE761DB6A31500307EA9 /* Assets.xcassets */,
 				AB1EDE781DB6A31500307EA9 /* LaunchScreen.storyboard */,
@@ -212,7 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB1EDE6F1DB6A31500307EA9 /* ViewController.swift in Sources */,
+				AB1EDE6F1DB6A31500307EA9 /* MainViewController.swift in Sources */,
 				AB1EDE6D1DB6A31500307EA9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
