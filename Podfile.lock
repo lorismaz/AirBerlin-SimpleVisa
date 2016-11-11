@@ -1,15 +1,32 @@
 PODS:
   - Alamofire (4.0.1)
+  - BKMoneyKit (0.0.10)
   - Eureka (2.0.0-beta.1)
+  - EurekaCreditCard (0.2.0):
+    - BKMoneyKit
+    - Eureka
 
 DEPENDENCIES:
   - Alamofire
   - Eureka (~> 2.0.0-beta.1)
+  - EurekaCreditCard (from `https://github.com/demetrio812/EurekaCreditCard.git`, branch `Swift3`)
+
+EXTERNAL SOURCES:
+  EurekaCreditCard:
+    :branch: Swift3
+    :git: https://github.com/demetrio812/EurekaCreditCard.git
+
+CHECKOUT OPTIONS:
+  EurekaCreditCard:
+    :commit: 8c7cc777a20f93ffca00d5b6e166bf67806d6fc5
+    :git: https://github.com/demetrio812/EurekaCreditCard.git
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
+  BKMoneyKit: c82735f879bbe83353d1227691dba88980a725af
   Eureka: d014adf16406745e1a78d5790ea37ed130a0a8e5
+  EurekaCreditCard: c9d0ca068806ffb1e9e519b93f9559840aa37457
 
-PODFILE CHECKSUM: 3cf8f95db31368c8ddab3e0bf5bc1c2a1b13825e
+PODFILE CHECKSUM: 73d1f1c7d57c89af7e7da9404d30424e561f379e
 
 COCOAPODS: 1.1.0.rc.3
