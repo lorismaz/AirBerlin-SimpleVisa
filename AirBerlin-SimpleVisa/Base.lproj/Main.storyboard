@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="kEU-H5-18V">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--New Trip-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="AirBerlin_SimpleVisa" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="TripViewController" customModule="AirBerlin_SimpleVisa" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -19,10 +22,149 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" title="New Trip" id="fFr-z2-ZUy">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="ti7-Eg-xJs">
+                            <connections>
+                                <action selector="nextButtonTapped:" destination="BYZ-38-t0r" id="EdL-Dn-zdC"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nextButton" destination="ti7-Eg-xJs" id="Vpy-ah-KfL"/>
+                        <segue destination="SeX-Sk-COa" kind="show" identifier="ToPassenger" id="2By-ND-t1Z"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1076" y="130.88455772113943"/>
+        </scene>
+        <!--Passenger-->
+        <scene sceneID="1jT-wM-PMk">
+            <objects>
+                <viewController id="SeX-Sk-COa" customClass="PassengerViewController" customModule="AirBerlin_SimpleVisa" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RbW-DI-lU8"/>
+                        <viewControllerLayoutGuide type="bottom" id="d3r-uW-O1Z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="i3q-fI-2r2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Passenger" id="mRO-cA-0Sz">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="ygs-fc-iZb">
+                            <connections>
+                                <action selector="nextButtonTapped:" destination="SeX-Sk-COa" id="paH-jm-y9k"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="nextButton" destination="ygs-fc-iZb" id="q86-vG-K4a"/>
+                        <segue destination="q4N-ve-r2u" kind="show" identifier="ToPayment" id="IXb-DB-Bdt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IVr-dv-CgH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1884" y="130.88455772113943"/>
+        </scene>
+        <!--Payment-->
+        <scene sceneID="4sa-mM-j4w">
+            <objects>
+                <viewController id="q4N-ve-r2u" customClass="PaymentViewController" customModule="AirBerlin_SimpleVisa" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xAe-0w-EYi"/>
+                        <viewControllerLayoutGuide type="bottom" id="e8I-sC-laS"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nwW-3G-Ljg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Payment" id="Vez-tT-v2E">
+                        <barButtonItem key="rightBarButtonItem" title="Confirm" id="REc-LM-Ocz">
+                            <connections>
+                                <action selector="confirmButtonTapped:" destination="q4N-ve-r2u" id="LJp-T1-otH"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="confirmButton" destination="REc-LM-Ocz" id="3f0-Un-bzA"/>
+                        <segue destination="9Zt-AY-hs2" kind="showDetail" identifier="ToConfirmation" action="showViewController:sender:" id="dRz-I1-sUj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a6l-QQ-KsW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2670" y="131"/>
+        </scene>
+        <!--Confirmation-->
+        <scene sceneID="OED-18-p0h">
+            <objects>
+                <viewController id="Tep-Qj-5MW" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="der-8i-u47"/>
+                        <viewControllerLayoutGuide type="bottom" id="Gs5-xa-yGE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="MmP-6Q-gH4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Confirmation" id="7ts-fH-6dt">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="7QB-Mn-3SY">
+                            <connections>
+                                <segue destination="WAQ-yc-LmF" kind="showDetail" animates="NO" id="0vz-kv-iHy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="pW3-9Q-4JI"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nvO-fZ-Bf2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4396" y="130.88455772113943"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="jwq-4R-LAh">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="WAQ-yc-LmF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EE8-QW-mNJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5069" y="129"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="mpf-RD-Tz7">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="kEU-H5-18V" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uIc-Yp-m3F">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="vIN-Zz-rab"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Mn-Rg-0Jt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
             <point key="canvasLocation" x="136.80000000000001" y="130.88455772113943"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="aky-dp-yZp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="9Zt-AY-hs2" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Mu-ij-rVD">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Tep-Qj-5MW" kind="relationship" relationship="rootViewController" id="JGG-tN-bLI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pmn-62-voz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3567" y="131"/>
         </scene>
     </scenes>
 </document>

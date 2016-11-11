@@ -1,107 +1,35 @@
 //
-//  MainViewController.swift
+//  PassengerViewController.swift
 //  AirBerlin-SimpleVisa
 //
-//  Created by Loris Mazloum on 10/18/16.
+//  Created by Loris Mazloum on 11/11/16.
 //  Copyright © 2016 Maz Labs. All rights reserved.
 //
 
+import UIKit
 import Eureka
-import Alamofire
 
-class MainViewController: FormViewController {
+class PassengerViewController: FormViewController {
+
+    @IBOutlet weak var nextButton: UIBarButtonItem!
     
-    
-    
-    
-    
-    @IBAction func apiCallPressed(_ sender: UIBarButtonItem) {
-        
-        let passenger = Passenger(type: .adult, salutation: "MR", firstName: "Loris", lastName: "Mazloum", dateOfBirth: "1983-06-29")
-        passenger.pId = "e0b49fd0-047b-42b3-a3a8-8cc2f7bcdd8a"
-        
-        let creditCard = CreditCard(number: "4111111111111111", type: .visa, holdersName: "Loris Mazloum", cvc: "123", expiryDate: "2019-03-21")
-        creditCard.ccId = "f7ab0a71-d528-4276-9ce0-dcec862fa81d"
-        
-        let customerAddress = CustomerAddress(name: "Loris Mazloum", email: "loris.mazloum@gmail.com", languageCode: "EN", address1: "12345 street name", city: "Berlin", zip: "10405", countryCode: "DE")
-        customerAddress.cId = "ae9b3367-c38d-4e6b-b3f1-77810a13369c"
-        
-        let flightSegment = FlightSegment(direction: "onward", fareCode: "NNYOW", date: "2016-11-11", number: "30BOPC8MG_20BPRT6VA")
-        flightSegment.fsId = "73fc68ae-5ea8-4560-aba3-8c5514be9599"
-        
-        let booking = Booking(passengers: passenger, creditCard: creditCard, customerAddress: customerAddress, flightSegments: flightSegment)
-        
-        if let bookingJson = booking.toJSON() {
-            print("Got Json")
-            
-            createNewBooking(with: bookingJson)
-        }
-        
-        
+    @IBAction func nextButtonTapped(_ sender: UIBarButtonItem) {
+        showPaymentView()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addDestinationForm(toForm: form)
-        
+        addPassengerForm(toForm: form)
+
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
     }
     
-    func createNewBooking(with bookingData: Data) {
-        /**
-         Create new booking
-         POST https://app.xapix.io/api/v1//airberlin_lab_2016/bookings
-         */
+    private func addPassengerForm(toForm form: Form) {
         
-        // Add Headers
-        
-        guard let url = URL(string: "https://app.xapix.io/api/v1/airberlin_lab_2016/bookings") else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue("ab16_LorisMaz:yWREONJp7XKuFrPjGDo8vaHCbZMB2zm6", forHTTPHeaderField: "Authorization")
-        
-        
-        request.httpBody = bookingData
-        
-        //start api call
-        print("Start API Call")
-        Alamofire.request(request)
-            .responseJSON { response in
-                print(response.request)  // original URL request
-                print(response.response) // HTTP URL response
-                print(response.data)     // server data
-                print(response.result)   // result of response serialization
-                
-                if let JSON = response.result.value {
-                    print("JSON: \(JSON)")
-                }
-        }
-        
-        
-    }
-    
-    private func addDestinationForm(toForm form: Form) {
-        
-        form +++ Section("Your Trip")
-            <<< PushRow<String>(){ row in
-                row.title = "Departure Airport"
-                row.tag = "departureAirport"
-                row.selectorTitle = "Departure Airport"
-                row.options = ["TXL"]
-            }
-            <<< PushRow<String>(){ row in
-                row.title = "Destination Airport"
-                row.tag = "destinationAirport"
-                row.selectorTitle = "Destination Airport"
-                row.options = ["NYC"]
-        }
-    }
-    
-    private func addBookingForm(toForm form: Form) {
-        
-        //MARK: Definitions
         let today = NSDate()
         // format dates: http://mityugin.com/?p=244
         let tenYearsFromNow = NSCalendar.current.date(byAdding: .year, value: 10, to: today as Date)
@@ -109,6 +37,12 @@ class MainViewController: FormViewController {
         
         //MARK: Passport Form
         form +++ Section("Personal Info")
+            <<< PushRow<String>(){ row in
+                row.title = "Salutation"
+                row.tag = "salutation"
+                row.selectorTitle = "Salutation"
+                row.options = ["MR","MISS","MRS"]
+            }
             <<< NameRow(){ row in
                 row.title = "First Name"
                 row.tag = "firstName"
@@ -167,5 +101,15 @@ class MainViewController: FormViewController {
         }
         
     }
+
+    // MARK: - Navigation
+    func showPaymentView() {
+        performSegue(withIdentifier: "ToPayment", sender: self)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
+
+
 }
