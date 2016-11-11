@@ -1,5 +1,5 @@
 //
-//  CreditCard.swift
+//  ABCreditCard.swift
 //  AirBerlin-SimpleVisa
 //
 //  Created by Loris Mazloum on 11/11/16.
@@ -16,19 +16,19 @@
 
 import Foundation
 
-enum CreditCardType: String {
+enum ABCreditCardType: String {
     case visa = "VI"
 }
 
-class CreditCard {
+class ABCreditCard {
     let number: String
-    let type: CreditCardType
+    let type: ABCreditCardType
     let holdersName: String
     let cvc: String
     let expiryDate: String
     var ccId: String? = nil
     
-    public init(number: String, type: CreditCardType, holdersName: String, cvc: String, expiryDate: String) {
+    public init(number: String, type: ABCreditCardType, holdersName: String, cvc: String, expiryDate: String) {
         self.number = number
         self.type = type
         self.holdersName = holdersName

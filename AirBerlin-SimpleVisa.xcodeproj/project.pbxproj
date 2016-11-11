@@ -13,11 +13,11 @@
 		AB1EDE721DB6A31500307EA9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB1EDE701DB6A31500307EA9 /* Main.storyboard */; };
 		AB1EDE771DB6A31500307EA9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AB1EDE761DB6A31500307EA9 /* Assets.xcassets */; };
 		AB1EDE7A1DB6A31500307EA9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB1EDE781DB6A31500307EA9 /* LaunchScreen.storyboard */; };
-		AB40ED291DD6360F00CB5AF7 /* FlightSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40ED281DD6360F00CB5AF7 /* FlightSegment.swift */; };
-		AB40ED2C1DD6364D00CB5AF7 /* CustomerAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40ED2B1DD6364D00CB5AF7 /* CustomerAddress.swift */; };
-		AB40ED2E1DD6367200CB5AF7 /* CreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40ED2D1DD6367200CB5AF7 /* CreditCard.swift */; };
-		AB40ED301DD636A200CB5AF7 /* Passenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40ED2F1DD636A200CB5AF7 /* Passenger.swift */; };
-		AB40ED321DD636B400CB5AF7 /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40ED311DD636B400CB5AF7 /* Booking.swift */; };
+		AB40ED291DD6360F00CB5AF7 /* ABFlightSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40ED281DD6360F00CB5AF7 /* ABFlightSegment.swift */; };
+		AB40ED2C1DD6364D00CB5AF7 /* ABCustomerAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40ED2B1DD6364D00CB5AF7 /* ABCustomerAddress.swift */; };
+		AB40ED2E1DD6367200CB5AF7 /* ABCreditCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40ED2D1DD6367200CB5AF7 /* ABCreditCard.swift */; };
+		AB40ED301DD636A200CB5AF7 /* ABPassenger.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40ED2F1DD636A200CB5AF7 /* ABPassenger.swift */; };
+		AB40ED321DD636B400CB5AF7 /* ABBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40ED311DD636B400CB5AF7 /* ABBooking.swift */; };
 		AB40ED361DD6444000CB5AF7 /* TripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40ED351DD6444000CB5AF7 /* TripViewController.swift */; };
 		AB40ED391DD6456100CB5AF7 /* PassengerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40ED381DD6456100CB5AF7 /* PassengerViewController.swift */; };
 		AB40ED3B1DD645A500CB5AF7 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB40ED3A1DD645A500CB5AF7 /* PaymentViewController.swift */; };
@@ -33,11 +33,11 @@
 		AB1EDE761DB6A31500307EA9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AB1EDE791DB6A31500307EA9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AB1EDE7B1DB6A31500307EA9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AB40ED281DD6360F00CB5AF7 /* FlightSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightSegment.swift; sourceTree = "<group>"; };
-		AB40ED2B1DD6364D00CB5AF7 /* CustomerAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomerAddress.swift; sourceTree = "<group>"; };
-		AB40ED2D1DD6367200CB5AF7 /* CreditCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreditCard.swift; sourceTree = "<group>"; };
-		AB40ED2F1DD636A200CB5AF7 /* Passenger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Passenger.swift; sourceTree = "<group>"; };
-		AB40ED311DD636B400CB5AF7 /* Booking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
+		AB40ED281DD6360F00CB5AF7 /* ABFlightSegment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABFlightSegment.swift; sourceTree = "<group>"; };
+		AB40ED2B1DD6364D00CB5AF7 /* ABCustomerAddress.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABCustomerAddress.swift; sourceTree = "<group>"; };
+		AB40ED2D1DD6367200CB5AF7 /* ABCreditCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABCreditCard.swift; sourceTree = "<group>"; };
+		AB40ED2F1DD636A200CB5AF7 /* ABPassenger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABPassenger.swift; sourceTree = "<group>"; };
+		AB40ED311DD636B400CB5AF7 /* ABBooking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABBooking.swift; sourceTree = "<group>"; };
 		AB40ED351DD6444000CB5AF7 /* TripViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TripViewController.swift; sourceTree = "<group>"; };
 		AB40ED381DD6456100CB5AF7 /* PassengerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassengerViewController.swift; sourceTree = "<group>"; };
 		AB40ED3A1DD645A500CB5AF7 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
@@ -110,11 +110,11 @@
 		AB40ED2A1DD6361700CB5AF7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				AB40ED281DD6360F00CB5AF7 /* FlightSegment.swift */,
-				AB40ED2B1DD6364D00CB5AF7 /* CustomerAddress.swift */,
-				AB40ED2D1DD6367200CB5AF7 /* CreditCard.swift */,
-				AB40ED2F1DD636A200CB5AF7 /* Passenger.swift */,
-				AB40ED311DD636B400CB5AF7 /* Booking.swift */,
+				AB40ED281DD6360F00CB5AF7 /* ABFlightSegment.swift */,
+				AB40ED2B1DD6364D00CB5AF7 /* ABCustomerAddress.swift */,
+				AB40ED2D1DD6367200CB5AF7 /* ABCreditCard.swift */,
+				AB40ED2F1DD636A200CB5AF7 /* ABPassenger.swift */,
+				AB40ED311DD636B400CB5AF7 /* ABBooking.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -255,13 +255,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB40ED2C1DD6364D00CB5AF7 /* CustomerAddress.swift in Sources */,
+				AB40ED2C1DD6364D00CB5AF7 /* ABCustomerAddress.swift in Sources */,
 				AB40ED361DD6444000CB5AF7 /* TripViewController.swift in Sources */,
-				AB40ED2E1DD6367200CB5AF7 /* CreditCard.swift in Sources */,
-				AB40ED321DD636B400CB5AF7 /* Booking.swift in Sources */,
+				AB40ED2E1DD6367200CB5AF7 /* ABCreditCard.swift in Sources */,
+				AB40ED321DD636B400CB5AF7 /* ABBooking.swift in Sources */,
 				AB40ED3D1DD64A9800CB5AF7 /* ConfirmationViewController.swift in Sources */,
-				AB40ED301DD636A200CB5AF7 /* Passenger.swift in Sources */,
-				AB40ED291DD6360F00CB5AF7 /* FlightSegment.swift in Sources */,
+				AB40ED301DD636A200CB5AF7 /* ABPassenger.swift in Sources */,
+				AB40ED291DD6360F00CB5AF7 /* ABFlightSegment.swift in Sources */,
 				AB40ED391DD6456100CB5AF7 /* PassengerViewController.swift in Sources */,
 				AB40ED3B1DD645A500CB5AF7 /* PaymentViewController.swift in Sources */,
 				AB1EDE6F1DB6A31500307EA9 /* MainViewController.swift in Sources */,

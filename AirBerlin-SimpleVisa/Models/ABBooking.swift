@@ -1,5 +1,5 @@
 //
-//  Booking.swift
+//  ABBooking.swift
 //  AirBerlin-SimpleVisa
 //
 //  Created by Loris Mazloum on 11/11/16.
@@ -15,13 +15,13 @@
 import Foundation
 
 class Booking {
-    let passengers: Passenger
-    let creditCard: CreditCard
-    let customerAddress: CustomerAddress
-    let flightSegments: FlightSegment
+    let passengers: ABPassenger
+    let creditCard: ABCreditCard
+    let customerAddress: ABCustomerAddress
+    let flightSegments: ABFlightSegment
     var bId: String? = nil
     
-    public init(passengers: Passenger, creditCard: CreditCard, customerAddress: CustomerAddress, flightSegments: FlightSegment) {
+    public init(passengers: ABPassenger, creditCard: ABCreditCard, customerAddress: ABCustomerAddress, flightSegments: ABFlightSegment) {
         self.passengers = passengers
         self.creditCard = creditCard
         self.customerAddress = customerAddress

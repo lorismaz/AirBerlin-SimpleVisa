@@ -1,5 +1,5 @@
 //
-//  Passenger.swift
+//  ABPassenger.swift
 //  AirBerlin-SimpleVisa
 //
 //  Created by Loris Mazloum on 11/11/16.
@@ -14,20 +14,20 @@
 
 import Foundation
 
-enum PassengerType: String {
+enum ABPassengerType: String {
     case adult = "ADT"
     case child = "CLD"
 }
 
-class Passenger {
-    let type: PassengerType
+class ABPassenger {
+    let type: ABPassengerType
     let salutation: String
     let firstName: String
     let lastName: String
     let dateOfBirth: String
     var pId: String? = nil
     
-    public init(type: PassengerType, salutation: String, firstName: String, lastName: String, dateOfBirth: String) {
+    public init(type: ABPassengerType, salutation: String, firstName: String, lastName: String, dateOfBirth: String) {
         self.type = type
         self.salutation = salutation
         self.firstName = firstName

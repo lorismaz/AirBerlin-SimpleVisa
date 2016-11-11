@@ -17,16 +17,16 @@ class MainViewController: FormViewController {
     
     @IBAction func apiCallPressed(_ sender: UIBarButtonItem) {
         
-        let passenger = Passenger(type: .adult, salutation: "MR", firstName: "Loris", lastName: "Mazloum", dateOfBirth: "1983-06-29")
+        let passenger = ABPassenger(type: .adult, salutation: "MR", firstName: "Loris", lastName: "Mazloum", dateOfBirth: "1983-06-29")
         passenger.pId = "e0b49fd0-047b-42b3-a3a8-8cc2f7bcdd8a"
         
-        let creditCard = CreditCard(number: "4111111111111111", type: .visa, holdersName: "Loris Mazloum", cvc: "123", expiryDate: "2019-03-21")
+        let creditCard = ABCreditCard(number: "4111111111111111", type: .visa, holdersName: "Loris Mazloum", cvc: "123", expiryDate: "2019-03-21")
         creditCard.ccId = "f7ab0a71-d528-4276-9ce0-dcec862fa81d"
         
-        let customerAddress = CustomerAddress(name: "Loris Mazloum", email: "loris.mazloum@gmail.com", languageCode: "EN", address1: "12345 street name", city: "Berlin", zip: "10405", countryCode: "DE")
+        let customerAddress = ABCustomerAddress(name: "Loris Mazloum", email: "loris.mazloum@gmail.com", languageCode: "EN", address1: "12345 street name", city: "Berlin", zip: "10405", countryCode: "DE")
         customerAddress.cId = "ae9b3367-c38d-4e6b-b3f1-77810a13369c"
         
-        let flightSegment = FlightSegment(direction: "onward", fareCode: "NNYOW", date: "2016-11-11", number: "30BOPC8MG_20BPRT6VA")
+        let flightSegment = ABFlightSegment(direction: "onward", fareCode: "NNYOW", date: "2016-11-11", number: "30BOPC8MG_20BPRT6VA")
         flightSegment.fsId = "73fc68ae-5ea8-4560-aba3-8c5514be9599"
         
         let booking = Booking(passengers: passenger, creditCard: creditCard, customerAddress: customerAddress, flightSegments: flightSegment)

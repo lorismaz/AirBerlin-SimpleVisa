@@ -1,5 +1,5 @@
 //
-//  FlightSegment.swift
+//  ABFlightSegment.swift
 //  AirBerlin-SimpleVisa
 //
 //  Created by Loris Mazloum on 11/11/16.
@@ -13,7 +13,7 @@
 
 import Foundation
 
-class FlightSegment {
+class ABFlightSegment {
 
     let direction: String
     let fareCode: String

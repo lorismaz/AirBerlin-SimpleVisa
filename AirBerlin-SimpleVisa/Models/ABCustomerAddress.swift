@@ -1,5 +1,5 @@
 //
-//  CustomerAddress.swift
+//  ABCustomerAddress.swift
 //  AirBerlin-SimpleVisa
 //
 //  Created by Loris Mazloum on 11/11/16.
@@ -18,7 +18,7 @@
 
 import Foundation
 
-class CustomerAddress {
+class ABCustomerAddress {
     let name: String
     let email: String
     let languageCode: String
