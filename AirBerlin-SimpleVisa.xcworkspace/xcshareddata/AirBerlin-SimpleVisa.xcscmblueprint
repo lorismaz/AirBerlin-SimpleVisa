@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "C6776B2D352145B9C1EEF83D4FCCFC00C63F2C5E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "C6776B2D352145B9C1EEF83D4FCCFC00C63F2C5E" : 9223372036854775807,
+    "FF8BC94FDD970DD66285C83A6B79C1B78C298321" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "4C774FF8-A1EE-4BC1-8AF2-A403EAE5029C",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "C6776B2D352145B9C1EEF83D4FCCFC00C63F2C5E" : "AirBerlin-SimpleVisa\/",
+    "FF8BC94FDD970DD66285C83A6B79C1B78C298321" : "SimpleVisa%20API%20Framework\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AirBerlin-SimpleVisa",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AirBerlin-SimpleVisa.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/lorismaz\/AirBerlin-SimpleVisa.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C6776B2D352145B9C1EEF83D4FCCFC00C63F2C5E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/simplevisa\/simplevisa-ios-sdk.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FF8BC94FDD970DD66285C83A6B79C1B78C298321"
+    }
+  ]
+}

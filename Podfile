@@ -9,4 +9,5 @@ target 'AirBerlin-SimpleVisa' do
   pod 'Eureka', '~> 2.0.0-beta.1'
   pod "EurekaCreditCard", :git=> 'https://github.com/demetrio812/EurekaCreditCard.git', :branch => 'Swift3'
   pod 'Alamofire'
+  pod 'SimpleVisa', :git=> 'https://github.com/simplevisa/simplevisa-ios-sdk.git', :branch => 'master'
 end
