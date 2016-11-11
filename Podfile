@@ -7,4 +7,5 @@ target 'AirBerlin-SimpleVisa' do
 
   # Pods for AirBerlin-SimpleVisa
   pod 'Eureka', '~> 2.0.0-beta.1'
+  pod 'Alamofire'
 end
