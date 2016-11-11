@@ -8,22 +8,74 @@
 
 import UIKit
 import Eureka
-
+import SimpleVisa
 class PassengerViewController: FormViewController {
+    
+    var passenger: ABPassenger?
+    var visaNeeded: Bool = false
 
+    let activityIndicator = UIActivityIndicatorView()
+    var spinner = UIBarButtonItem()
+    
     @IBOutlet weak var nextButton: UIBarButtonItem!
     
     @IBAction func nextButtonTapped(_ sender: UIBarButtonItem) {
-        showPaymentView()
+        
+        let passengerDictionary = form.values()
+        guard let firstName = passengerDictionary["firstName"] as? String,
+            let lastName = passengerDictionary["lastName"] as? String,
+            let sex = passengerDictionary["sex"] as? String,
+            let dateOfBirth = passengerDictionary["dateOfBirth"] as? Date,
+            let passportIssuingCountry = passengerDictionary["passportIssuingCountry"] as? String,
+            let passportNumber = passengerDictionary["passportNumber"] as? String,
+            let passportExpiringDate = passengerDictionary["passportExpiringDate"] as? Date
+            else {
+                print("Error parsing form data")
+                return
+        }
+        
+        var passengerSex = "M"
+        if sex == "Female" {
+            passengerSex = "F"
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateOfBirthString = dateFormatter.string(from: dateOfBirth)
+        let expiringDateString = dateFormatter.string(from: passportExpiringDate)
+        
+        print(">>> \(passportNumber) ")
+        
+        let newPassport = SVPassport(firstName: firstName, lastName: lastName, sex: passengerSex, dateOfBirth: dateOfBirthString, number: passportNumber, issuingCountry: passportIssuingCountry, issuanceDate: "", expiringDate: expiringDateString)
+        
+        do {
+            
+            self.activityIndicator.startAnimating()
+            self.navigationItem.rightBarButtonItem = spinner
+            
+            try SimpleVisaClient.checkPassport(passport: newPassport)
+        } catch {
+            self.activityIndicator.stopAnimating()
+            print(error.localizedDescription)
+        }
+        
+        //showPaymentView()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        spinner = UIBarButtonItem(customView: activityIndicator)
+        
+        
+        prepareSimpleVisa()
+        
         addPassengerForm(toForm: form)
-
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -55,7 +107,7 @@ class PassengerViewController: FormViewController {
             }
             <<< DateRow(){ row in
                 row.title = "Date of Birth"
-                row.tag = "dob"
+                row.tag = "dateOfBirth"
                 //$0.value = NSDate(timeIntervalSinceReferenceDate: 0) as Date
                 row.maximumDate = today as Date
                 row.minimumDate = hundredYearsAgo! as Date
@@ -72,8 +124,7 @@ class PassengerViewController: FormViewController {
                 row.title = "Passport Issuing Country"
                 row.tag = "passportIssuingCountry"
                 row.selectorTitle = "Passport Issuing Country"
-                row.options = ["ANDORRA (AND)","AUSTRALIA (AUS)","AUSTRIA (AUT)","BELGIUM (BEL)","BRUNEI (BRN)","CZECH REPUBLIC (CZE)","DENMARK (DNK)","ESTONIA (EST)","FINLAND (FIN)","FRANCE (FRA)","GERMANY (DEU)","GREECE (GRC)","HUNGARY (HUN)","ICELAND (ISL)","IRELAND (IRL)","ITALY (ITA)","JAPAN (JPN)","LATVIA (LVA)","LIECHTENSTEIN (LIE)","LITHUANIA (LTU)","LUXEMBOURG (LUX)","MALTA (MLT)","MONACO (MCO)","NETHERLANDS (NLD)","NEW ZEALAND (NZL)","NORWAY (NOR)","PORTUGAL (PRT)","SAN MARINO (SMR)","SINGAPORE (SGP)","SLOVAKIA (SVK)","SLOVENIA (SVN)","SOUTH KOREA (KOR)","SPAIN (ESP)","SWEDEN (SWE)","SWITZERLAND (CHE)","UK - BRITISH CITIZEN (GBR)","UK - BRITISH DTC (GBD)","UK - BRITISH NATIONAL (O) (GBN)","UK - BRITISH OVERSEAS (GBO)","UK - BRITISH SUBJECT (GBS)","UK - PROTECTED PERSON (GBP)"]
-                //$0.value = ""    // initially selected
+                row.options = ["AN","AU","AT","BE","DN","FR","DE","GR","HU","IE","IT"]
             }
             <<< TextRow(){ row in
                 row.title = "Passport Number"
@@ -101,7 +152,7 @@ class PassengerViewController: FormViewController {
         }
         
     }
-
+    
     // MARK: - Navigation
     func showPaymentView() {
         performSegue(withIdentifier: "ToPayment", sender: self)
@@ -110,6 +161,36 @@ class PassengerViewController: FormViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
+    
+    
+}
 
-
+extension PassengerViewController: SimpleVisaClientDelegate {
+    
+    func prepareSimpleVisa() {
+        SimpleVisaClient.delegate = self
+    }
+    
+    func didReceivePrograms(programs: [SVProgram]) {
+        //
+    }
+    
+    func didFinishCheckingPassport(authorization: Bool) {
+        print("Got passport authorization and result is \(authorization)")
+        
+        if !authorization {
+            print("need a new visa")
+            self.visaNeeded = true
+        } else {
+            print("no visa needed")
+        }
+        
+        DispatchQueue.main.async {
+            
+            self.activityIndicator.stopAnimating()
+            self.showPaymentView()
+        }
+        
+    }
+    
 }
