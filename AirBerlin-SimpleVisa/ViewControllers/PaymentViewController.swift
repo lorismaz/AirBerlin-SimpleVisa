@@ -9,17 +9,48 @@
 import UIKit
 import Eureka
 import EurekaCreditCard
+import Alamofire
 
 class PaymentViewController: FormViewController {
+    
+    let activityIndicator = UIActivityIndicatorView()
+    var spinner = UIBarButtonItem()
     
     @IBOutlet weak var confirmButton: UIBarButtonItem!
     
     @IBAction func confirmButtonTapped(_ sender: UIBarButtonItem) {
-        showConfirmationView()
+        
+        let passenger = ABPassenger(type: .adult, salutation: "MR", firstName: "Loris", lastName: "Mazloum", dateOfBirth: "1983-06-29")
+        passenger.pId = "d1d1593c-6227-4cb0-96e8-b03221c2fce6"
+        
+        let creditCard = ABCreditCard(number: "4111111111111111", type: .visa, holdersName: "Loris Mazloum", cvc: "123", expiryDate: "2019-03-21")
+        creditCard.ccId = "f7ab0a71-d528-4276-9ce0-dcec862fa81d"
+        
+        let customerAddress = ABCustomerAddress(name: "Loris Mazloum", email: "loris.mazloum@gmail.com", languageCode: "EN", address1: "12345 street name", city: "Berlin", zip: "10405", countryCode: "DE")
+        customerAddress.cId = "3116d49f-2363-4b3c-8243-8cef715d9d50"
+        
+        let flightSegment = ABFlightSegment(direction: "onward", fareCode: "NNYOW", date: "2016-11-11", number: "30BOPC8MG_20BPRT6VA")
+        flightSegment.fsId = "b87a61bc-b098-4142-afb5-3d1f54875f85"
+        
+        let booking = Booking(passengers: passenger, creditCard: creditCard, customerAddress: customerAddress, flightSegments: flightSegment)
+        
+        if let bookingJson = booking.toJSON() {
+            print("Got Json")
+            
+            createNewBooking(with: bookingJson)
+        }
+
+        
+        //showConfirmationView()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        spinner = UIBarButtonItem(customView: activityIndicator)
+        
         addPaymentForm(toForm: form)
     }
     
@@ -96,45 +127,68 @@ class PaymentViewController: FormViewController {
                 row.tag = "holdersName"
                 row.placeholder = "Full name"
             }
-            <<< CreditCardRow() {
+            <<< CreditCardRow() { row in
                 //$0.title = "Card"
-                $0.cardNumberPlaceholder = "Card Number"
-                $0.expirationMonthPlaceholder = "MM"
-                $0.expirationYearPlaceholder = "YY"
-                $0.cvcPlaceholder = "CVC"
-                //$0.dataSectionWidthPercentage = CGFloat(0.5)
-                //            $0.value = CreditCard()
-                $0.value = CreditCard(
+                row.cardNumberPlaceholder = "Card Number"
+                row.expirationMonthPlaceholder = "MM"
+                row.expirationYearPlaceholder = "YY"
+                row.cvcPlaceholder = "CVC"
+//                //$0.dataSectionWidthPercentage = CGFloat(0.5)
+//                //            $0.value = CreditCard()
+                row.value = CreditCard(
                     cardNumber: "",
                     expirationMonth: "",
                     expirationYear: "",
                     cvc: ""
                 )
         }
-        //
-        //            <<< PushRow<String>(){ row in
-        //                row.title = "Type"
-        //                row.tag = "type"
-        //                row.selectorTitle = "Type"
-        //                row.options = ["VI", "MC", "AM"]
-        //            }
-        //            <<< IntRow(){ row in
-        //                row.title = "Number"
-        //                row.tag = "number"
-        //                row.placeholder = "Credit card number"
-        //
-        //            }
-        //            <<< DateRow(){ row in
-        //                row.title = "Expiration Date"
-        //                row.tag = "expirationDate"
-        //                row.minimumDate = today as Date
-        //                row.maximumDate = twentyYearsFromNow! as Date
-        //            }
-        //            <<< IntRow(){ row in
-        //                row.title = "CVC"
-        //                row.tag = "cvc"
-        //                row.placeholder = "Security code on back of card"
-        //            }
+        
+    }
+    
+    func createNewBooking(with bookingData: Data) {
+        /**
+         Create new booking
+         POST https://app.xapix.io/api/v1//airberlin_lab_2016/bookings
+         */
+        
+        // Add Headers
+        
+        guard let url = URL(string: "https://app.xapix.io/api/v1/airberlin_lab_2016/bookings") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("ab16_LorisMaz:yWREONJp7XKuFrPjGDo8vaHCbZMB2zm6", forHTTPHeaderField: "Authorization")
+        
+        
+        request.httpBody = bookingData
+        
+        //start api call
+        print("Start API Call")
+        self.activityIndicator.startAnimating()
+        self.navigationItem.rightBarButtonItem = spinner
+        
+        Alamofire.request(request)
+            .responseJSON { response in
+                print(response.request)  // original URL request
+                print(response.response) // HTTP URL response
+                print(response.data)     // server data
+                print(response.result)   // result of response serialization
+                
+                if let JSON = response.result.value {
+                    print("JSON: \(JSON)")
+                    
+                    
+                }
+                
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showConfirmationView()
+                }
+                
+                
+        }
+        
         
     }
     

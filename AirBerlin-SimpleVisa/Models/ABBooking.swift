@@ -46,6 +46,7 @@ class Booking {
         
         do {
             let theJSONData = try JSONSerialization.data(withJSONObject: data)
+            //let theJSONData = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
             
             let theJSONText = NSString(data: theJSONData, encoding: String.Encoding.ascii.rawValue)
             print("JSON string = \(theJSONText!)")
