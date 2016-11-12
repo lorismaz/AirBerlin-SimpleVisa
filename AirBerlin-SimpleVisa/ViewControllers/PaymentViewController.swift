@@ -10,15 +10,49 @@ import UIKit
 import Eureka
 import EurekaCreditCard
 import Alamofire
+import SwiftyJSON
 
 class PaymentViewController: FormViewController {
     
     let activityIndicator = UIActivityIndicatorView()
     var spinner = UIBarButtonItem()
+    var nextButton = UIBarButtonItem()
+    
+    var booking: ABBooking? = nil
     
     @IBOutlet weak var confirmButton: UIBarButtonItem!
     
     @IBAction func confirmButtonTapped(_ sender: UIBarButtonItem) {
+        
+        prepareBooking()
+        
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
+        spinner = UIBarButtonItem(customView: activityIndicator)
+        
+        nextButton = UIBarButtonItem(
+            title: "Nextooo",
+            style: .plain,
+            target: self,
+            action: #selector(PaymentViewController.confirmButtonTapped(_:))
+        )
+        
+        self.navigationItem.rightBarButtonItem = self.nextButton
+        
+        addPaymentForm(toForm: form)
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func prepareBooking() {
         
         let passenger = ABPassenger(type: .adult, salutation: "MR", firstName: "Loris", lastName: "Mazloum", dateOfBirth: "1983-06-29")
         passenger.pId = "d1d1593c-6227-4cb0-96e8-b03221c2fce6"
@@ -32,38 +66,17 @@ class PaymentViewController: FormViewController {
         let flightSegment = ABFlightSegment(direction: "onward", fareCode: "NNYOW", date: "2016-11-11", number: "30BOPC8MG_20BPRT6VA")
         flightSegment.fsId = "b87a61bc-b098-4142-afb5-3d1f54875f85"
         
-        let booking = Booking(passengers: passenger, creditCard: creditCard, customerAddress: customerAddress, flightSegments: flightSegment)
+        self.booking = ABBooking(passengers: passenger, creditCard: creditCard, customerAddress: customerAddress, flightSegments: flightSegment)
         
-        if let bookingJson = booking.toJSON() {
+        if let bookingJson = self.booking?.toJSON() {
             print("Got Json")
             
             createNewBooking(with: bookingJson)
         }
-
         
-        //showConfirmationView()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.gray
-        spinner = UIBarButtonItem(customView: activityIndicator)
-        
-        addPaymentForm(toForm: form)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     private func addPaymentForm(toForm form: Form) {
-        
-        let today = NSDate()
-        // format dates: http://mityugin.com/?p=244
-        let twentyYearsFromNow = NSCalendar.current.date(byAdding: .year, value: 20, to: today as Date)
         
         form +++ Section("Customer Info")
             <<< NameRow(){ row in
@@ -133,8 +146,8 @@ class PaymentViewController: FormViewController {
                 row.expirationMonthPlaceholder = "MM"
                 row.expirationYearPlaceholder = "YY"
                 row.cvcPlaceholder = "CVC"
-//                //$0.dataSectionWidthPercentage = CGFloat(0.5)
-//                //            $0.value = CreditCard()
+                //                //$0.dataSectionWidthPercentage = CGFloat(0.5)
+                //                //            $0.value = CreditCard()
                 row.value = CreditCard(
                     cardNumber: "",
                     expirationMonth: "",
@@ -170,20 +183,37 @@ class PaymentViewController: FormViewController {
         
         Alamofire.request(request)
             .responseJSON { response in
-                print(response.request)  // original URL request
+                //print(response.request)  // original URL request
                 print(response.response) // HTTP URL response
                 print(response.data)     // server data
                 print(response.result)   // result of response serialization
                 
-                if let JSON = response.result.value {
-                    print("JSON: \(JSON)")
-                    
-                    
-                }
                 
-                DispatchQueue.main.async {
-                    self.activityIndicator.stopAnimating()
-                    self.showConfirmationView()
+                switch response.result {
+                case .success(let data):
+                    let json = JSON(data)
+                    print(json)
+                    
+                    let bookingNumber = json["booking_number"].stringValue
+                    print("Booking number: \(bookingNumber)")
+                    
+                    
+                    self.booking?.bookingNumber = bookingNumber
+                    
+                    DispatchQueue.main.async {
+                        self.activityIndicator.stopAnimating()
+                        self.navigationItem.rightBarButtonItem = self.nextButton
+                        self.showConfirmationView()
+                    }
+                    
+                case .failure(let error):
+                    print("Request failed with error: \(error)")
+                    
+                    DispatchQueue.main.async {
+                        self.activityIndicator.stopAnimating()
+                        self.navigationItem.rightBarButtonItem = self.nextButton
+                    }
+                    
                 }
                 
                 
@@ -201,6 +231,9 @@ class PaymentViewController: FormViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        guard let confirmationViewController = segue.destination as? ConfirmationViewController else { return }
+        
+        confirmationViewController.booking = self.booking
     }
     
 }

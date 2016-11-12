@@ -14,12 +14,13 @@
 
 import Foundation
 
-class Booking {
+class ABBooking {
     let passengers: ABPassenger
     let creditCard: ABCreditCard
     let customerAddress: ABCustomerAddress
     let flightSegments: ABFlightSegment
     var bId: String? = nil
+    var bookingNumber: String? = nil
     
     public init(passengers: ABPassenger, creditCard: ABCreditCard, customerAddress: ABCustomerAddress, flightSegments: ABFlightSegment) {
         self.passengers = passengers

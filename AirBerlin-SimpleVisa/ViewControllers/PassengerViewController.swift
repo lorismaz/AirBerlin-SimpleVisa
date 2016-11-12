@@ -9,6 +9,36 @@
 import UIKit
 import Eureka
 import SimpleVisa
+
+enum Sex: Int {
+    case NotKnown       = 0
+    case Male           = 1
+    case Female         = 2
+    case NotApplicable  = 9
+    
+    static let all      = [NotKnown, Male, Female, NotApplicable]
+    static let strings  = ["Unknown", "Male", "Female", "Not Applicable"]
+    static let shorts   = ["U", "M", "F", "NA"]
+    
+    func string() -> String {
+        let index = Sex.all.index(of: self) ?? 0
+        return Sex.strings[index]
+    }
+    
+    func short() -> String {
+        let index = Sex.all.index(of: self) ?? 0
+        return Sex.shorts[index]
+    }
+    
+    static func fromString(string: String) -> Sex {
+        if let index = Sex.strings.index(of: string) {
+            return Sex.all[index]
+        }
+        return Sex.NotKnown
+    }
+}
+
+
 class PassengerViewController: FormViewController {
     
     var passenger: ABPassenger?
@@ -24,7 +54,6 @@ class PassengerViewController: FormViewController {
         let passengerDictionary = form.values()
         guard let firstName = passengerDictionary["firstName"] as? String,
             let lastName = passengerDictionary["lastName"] as? String,
-            let sex = passengerDictionary["sex"] as? String,
             let dateOfBirth = passengerDictionary["dateOfBirth"] as? Date,
             let passportIssuingCountry = passengerDictionary["passportIssuingCountry"] as? String,
             let passportNumber = passengerDictionary["passportNumber"] as? String,
@@ -34,9 +63,11 @@ class PassengerViewController: FormViewController {
                 return
         }
         
-        var passengerSex = "M"
-        if sex == "Female" {
-            passengerSex = "F"
+        var sex: String = ""
+        
+        let row: SegmentedRow<String>? = self.form.rowBy(tag: "sex")
+        if let value = row?.value {
+            sex = Sex.fromString(string: value).short()
         }
         
         let dateFormatter = DateFormatter()
@@ -44,9 +75,7 @@ class PassengerViewController: FormViewController {
         let dateOfBirthString = dateFormatter.string(from: dateOfBirth)
         let expiringDateString = dateFormatter.string(from: passportExpiringDate)
         
-        print(">>> \(passportNumber) ")
-        
-        let newPassport = SVPassport(firstName: firstName, lastName: lastName, sex: passengerSex, dateOfBirth: dateOfBirthString, number: passportNumber, issuingCountry: passportIssuingCountry, issuanceDate: "", expiringDate: expiringDateString)
+        let newPassport = SVPassport(firstName: firstName, lastName: lastName, sex: sex, dateOfBirth: dateOfBirthString, number: passportNumber, issuingCountry: passportIssuingCountry, issuanceDate: "", expiringDate: expiringDateString)
         
         do {
             
@@ -59,7 +88,6 @@ class PassengerViewController: FormViewController {
             print(error.localizedDescription)
         }
         
-        //showPaymentView()
     }
     
     override func viewDidLoad() {
@@ -116,8 +144,7 @@ class PassengerViewController: FormViewController {
                 row.title = "Sex"
                 row.tag = "sex"
                 row.selectorTitle = "Set your sex"
-                row.options = ["Male","Female"]
-                //$0.value = "Male"    // initially selected
+                row.options = [Sex.Female.string(), Sex.Male.string()]
             }
             +++ Section("Passport Info")
             <<< PushRow<String>(){ row in
