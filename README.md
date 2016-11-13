@@ -7,6 +7,9 @@
 
 [https://marvelapp.com/8bcidhg](https://marvelapp.com/8bcidhg)
 
+## APIs Info
+This App uses the [AirBerlin API](https://app.xapix.io/airberlin) hosted on [XapiX.io](http://go.xapix.io/), and the [SimpleVisa API](http://www.simplevisa.com/developers). The AirBerlin API allows the creation of `passengers`, `credit cards`, `flight segments`, `customer addresses` and `bookings`. The SimpleVisa API allows the creation of `passports` and checks and create `electronic visas`.
+ 
 ## Inspiration
 Frequent international travelers knows the struggle to get a travel visa for their destination: finding the correct visa, finding out where to apply, how to apply and what to answer to get approved is an unnecessary hassle.
 
