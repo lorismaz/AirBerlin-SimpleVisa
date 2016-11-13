@@ -9,7 +9,7 @@
 
 ## APIs Info
 This App uses the [AirBerlin API](https://app.xapix.io/airberlin) hosted on [XapiX.io](http://go.xapix.io/), and the [SimpleVisa API](http://www.simplevisa.com/developers). The AirBerlin API allows the creation of `passengers`, `credit cards`, `flight segments`, `customer addresses` and `bookings`. The SimpleVisa API allows the creation of `passports` and checks and create `electronic visas`.
- 
+
 ## Inspiration
 Frequent international travelers knows the struggle to get a travel visa for their destination: finding the correct visa, finding out where to apply, how to apply and what to answer to get approved is an unnecessary hassle.
 
@@ -26,4 +26,4 @@ The airline API was giving me errors when I tried to create a booking, so I simu
 While I spoke to the AirBerlin team, I learned that the United States was a big market for the airline, so I focused the demo app on this specific destination country.
 
 ## What's next for AirBerlin-SimpleVisa-BusinessChallenge
-Integrating the two APIs together was not too complicated, so I can see the concept extended to other destinations countries: wherever you travel to a destination country that requires an electronic visa, you can do it right from the AirBerlin app.
+Integrating the two APIs together was not too complicated, so I can see the concept extended to other destinations countries: wherever you travel to a destination country that requires an electronic visa, you can do it right from the AirBerlin app. Each visa have a different cost, so AirBerlin could include the price of the visa into the price of the flight, or offer the option to the user to process it for an additional cost.
