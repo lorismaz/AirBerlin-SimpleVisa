@@ -199,10 +199,9 @@ class PaymentViewController: FormViewController {
                     print("Booking number: \(bookingNumber)")
                     
                     
-                    
+                    self.bookingNumber = bookingNumber
                     
                     DispatchQueue.main.async {
-                        self.booking?.bookingNumber = bookingNumber
                         self.bookingNumber = bookingNumber
                         self.activityIndicator.stopAnimating()
                         self.navigationItem.rightBarButtonItem = self.nextButton
@@ -235,10 +234,12 @@ class PaymentViewController: FormViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        guard let confirmationViewController = segue.destination as? ConfirmationViewController else { return }
+        guard let navigationController = segue.destination as? UINavigationController,
+            let controller = navigationController.topViewController as? ConfirmationViewController else { return }
         
-        confirmationViewController.bookingNumber = self.bookingNumber
-        confirmationViewController.booking = self.booking
+        guard let bookingNumber = self.bookingNumber else { return }
+        
+        controller.bookingNumber = bookingNumber
     }
     
 }

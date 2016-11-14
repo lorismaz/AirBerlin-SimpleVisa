@@ -13,7 +13,7 @@ class ConfirmationViewController: UIViewController {
     
     //MARK: Properties
     var booking: ABBooking?
-    var bookingNumber: String?
+    var bookingNumber: String!
     var visa: [String: Any] = ["status":"Visa Processing",
                                "text": "A visa was submitted to the destination's electronic system for travel authorization. It is still processing for now and it will be updated when complete. You will receive an email with the details of your visa.",
                                "buttonText":"",
@@ -75,12 +75,8 @@ class ConfirmationViewController: UIViewController {
         }
         
         
-        if let unwrappedBookingNumber = bookingNumber {
-            bookingRefLabel.text = unwrappedBookingNumber
-        } else {
-            print("booking apparently failed, creating a random one...")
-            prepareBooking()
-        }
+        guard let bookingNumber = self.bookingNumber else { return }
+        bookingRefLabel.text = bookingNumber
         
     }
     
