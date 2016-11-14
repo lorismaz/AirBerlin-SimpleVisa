@@ -151,7 +151,7 @@ class PassengerViewController: FormViewController {
                 row.title = "Passport Issuing Country"
                 row.tag = "passportIssuingCountry"
                 row.selectorTitle = "Passport Issuing Country"
-                row.options = ["AN","AU","AT","BE","DN","FR","DE","GR","HU","IE","IT"]
+                row.options = ["AN","AU","AT","BE","DN","FR","DE","NO","HU","IE","IT"]
             }
             <<< TextRow(){ row in
                 row.title = "Passport Number"

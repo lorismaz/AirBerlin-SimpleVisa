@@ -19,6 +19,7 @@ class PaymentViewController: FormViewController {
     var nextButton = UIBarButtonItem()
     
     var booking: ABBooking? = nil
+    var bookingNumber: String?
     
     @IBOutlet weak var confirmButton: UIBarButtonItem!
     
@@ -36,7 +37,7 @@ class PaymentViewController: FormViewController {
         spinner = UIBarButtonItem(customView: activityIndicator)
         
         nextButton = UIBarButtonItem(
-            title: "Nextooo",
+            title: "Confirm",
             style: .plain,
             target: self,
             action: #selector(PaymentViewController.confirmButtonTapped(_:))
@@ -64,7 +65,7 @@ class PaymentViewController: FormViewController {
         customerAddress.cId = "3116d49f-2363-4b3c-8243-8cef715d9d50"
         
         let flightSegment = ABFlightSegment(direction: "onward", fareCode: "NNYOW", date: "2016-11-11", number: "30BOPC8MG_20BPRT6VA")
-        flightSegment.fsId = "b87a61bc-b098-4142-afb5-3d1f54875f85"
+        flightSegment.fsId = "9280d234-1072-4cb5-a672-2f371de2f19c"
         
         self.booking = ABBooking(passengers: passenger, creditCard: creditCard, customerAddress: customerAddress, flightSegments: flightSegment)
         
@@ -198,9 +199,11 @@ class PaymentViewController: FormViewController {
                     print("Booking number: \(bookingNumber)")
                     
                     
-                    self.booking?.bookingNumber = bookingNumber
+                    
                     
                     DispatchQueue.main.async {
+                        self.booking?.bookingNumber = bookingNumber
+                        self.bookingNumber = bookingNumber
                         self.activityIndicator.stopAnimating()
                         self.navigationItem.rightBarButtonItem = self.nextButton
                         self.showConfirmationView()
@@ -212,6 +215,7 @@ class PaymentViewController: FormViewController {
                     DispatchQueue.main.async {
                         self.activityIndicator.stopAnimating()
                         self.navigationItem.rightBarButtonItem = self.nextButton
+                        self.showConfirmationView()
                     }
                     
                 }
@@ -233,6 +237,7 @@ class PaymentViewController: FormViewController {
         
         guard let confirmationViewController = segue.destination as? ConfirmationViewController else { return }
         
+        confirmationViewController.bookingNumber = self.bookingNumber
         confirmationViewController.booking = self.booking
     }
     
